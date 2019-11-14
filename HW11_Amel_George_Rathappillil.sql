@@ -7,8 +7,11 @@ select dept, count(*)
 from instructors
 group by Dept;
 
-select max(Grade)
-from grades;
+select grades.Grade, count(*) as max_Grade
+from grades
+group by grades.Grade
+order by max_Grade desc
+limit 1;
 
 select Name, CWID, Major, Course, Grade
 from students
