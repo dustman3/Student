@@ -5,7 +5,8 @@ Created on Wed Sep 4 12:46:59 2019
 
 @author: amelgr
 
-    This file Implements a program for the game Rock,Paper and Scissors
+    This file Implements a program to fetch instructor table
+    and display it as web application
 """
 
 import sqlite3
@@ -14,7 +15,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/instructors')
-def student_courses():
+def instructors_table():
+    """ This method fetches the data from database and
+    sends to the jinj2 templates"""
     dbpath = "C:\\Users\\amelg\\Documents\\Course materials\\SSE810\\Homeworks\810_startup.db"
 
     try:
@@ -42,5 +45,6 @@ def student_courses():
             table_title = 'Courses and student counts',
             students = data
         )
+
 
 app.run(debug=True)
