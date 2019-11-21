@@ -14,11 +14,12 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.route('/instructors')
 def instructors_table():
     """ This method fetches the data from database and
     sends to the jinj2 templates"""
-    dbpath = "C:\\Users\\amelg\\Documents\\Course materials\\SSE810\\Homeworks\810_startup.db"
+    dbpath = "C:\\Users\\amelg\\Documents\\Course materials\\SSE810\\Homeworks\\HW12\\810_startup.db"
 
     try:
         db = sqlite3.connect(dbpath)
@@ -33,17 +34,17 @@ def instructors_table():
                     group by grades.InstructorCWID,
                             grades.Course
                     order by CWID asc """
-    
-        data = [{'cwid' : cwid , 'name' : name, 'dept' :  dept, 'course' : course, 'students': students}
+
+        data = [{'cwid': cwid, 'name': name, 'dept':  dept, 'course': course, 'students': students}
                 for cwid, name, dept, course, students in db.execute(query)]
-        
+
         db.close()
 
         return render_template(
             'instructors.html',
-            title = 'Stevens Repository',
-            table_title = 'Courses and student counts',
-            students = data
+            title='Stevens Repository',
+            table_title='Courses and student counts',
+            students=data
         )
 
 
